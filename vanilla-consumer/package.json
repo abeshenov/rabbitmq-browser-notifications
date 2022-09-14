@@ -1,0 +1,16 @@
+{
+  "name": "vanilla-consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@stomp/stompjs": "^6.1.2",
+    "ws": "^8.8.1"
+  }
+}
