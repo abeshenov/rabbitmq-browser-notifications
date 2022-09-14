@@ -360,7 +360,7 @@ done
 
 Our JavaScript application will receive
 
-[source,shell]
+[source]
 ----
 Got message from /exchange/notifications/notification.red
 > Hello to the red team!
