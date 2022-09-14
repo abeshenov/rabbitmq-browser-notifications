@@ -17,7 +17,8 @@ which maps AMQP to *link:https://stomp.github.io/[STOMP]*
 (Simple Text Oriented Messaging Protocol) over WebSockets.
 
 We are going to build a toy example with web clients consuming messages
-from RabbitMQ via STOMP.
+from RabbitMQ via STOMP. I will also use this opportunity to explain AMQP
+and how it relates to STOMP subsctiptions.
 
 
 == STOMP protocol
@@ -59,8 +60,14 @@ These are FIFO queues where the messages wait to be consumed.
 - Exchanges take routing decisions according to *bindings*.
 A binding is a routing rule declared for an exchange.
 
+AMQP allows us to declare exchanges, queues, and bindings on a running
+server. STOMP has nothing like that.
+
+
+== Exchange types
+
 Different exchange types can route messages based on different conditions.
-The above terms should be more clear in particular cases.
+The above terminology should be more clear in particular cases.
 
 === Default exchange
 
@@ -77,8 +84,8 @@ So *binding* in this case is implicit.
 
 A *fanout exchange* allows us to broadcast messages to multiple consumers.
 
-In this case a *binding* determines multiple queues where the messages should be
-delivered next. A copy of each message is sent to all bound queues.
+In this case *bindings* determine multiple queues where the messages should be
+delivered. A copy of each message is sent to all bound destination.
 
 *Routing keys* are ignored for fanouts.
 
@@ -89,26 +96,19 @@ A *topic exchange* allows us to use bindings with wildcards.
 *Routing keys* in this case are supposed to have dot separated hierarchical
 format like `foo.bar.baz`.
 
-*Bindings* in this case are wildcard patterns:
+*Bindings* are wildcard patterns:
 
 - `*` matches all symbols up to dot `.`
 - `#` matches all symbols, including dots `.`
 
 E.g. `foo.bar.baz` matches `foo.\*.baz`, `foo.bar.*`, and `foo.#`
 
-This is similar to subscribing to topics.
-
-A *message queue* should be created by the subscriber, and then bound to the
-exchange with a pattern like above.
+This is similar to subscribing to topics. A *message queue* should be created
+by the subscriber, and then bound to the exchange with a pattern like above.
 
 There is also a *header exchange* which routes messages according to their
 headers rather than routing keys, but we won't go into the details.
-
-Here we'll see topic and fanout exchanges in action.
-
-AMQP allows us to declare exchanges, queues, and bindings on a running
-server. This is very different from STOMP, because a STOMP server is assumed
-to have a fixed set of "destinations".
+Here we'll focus on topic and fanout exchanges.
 
 
 == Message format
