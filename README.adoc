@@ -438,3 +438,5 @@ image:demo-fanout.png[]
 link:https://www.rabbitmq.com/web-stomp.html[Web STOMP] plugins
 for RabbitMQ
 - link:https://github.com/stomp-js/stompjs[STOMP.js] library for JavaScript
+- Gavin Roy, RabbitMQ in Depth, Manning Publications, 2018.
+
