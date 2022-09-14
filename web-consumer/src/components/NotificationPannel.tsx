@@ -41,7 +41,9 @@ const NotificationListener: (props: NotificationListenerProps) => JSX.Element =
    )
  }
 
-const registerNewClient: (topic: string, notificationCallback: (notification: string) => void) => Client =
+type NotificationConsumer = (notification: string) => void
+
+const registerNewClient: (topic: string, notificationConsumer: NotificationConsumer) => Client =
   (topic, notificationCallback) => {
     console.debug(`Registering client for ${topic}`)
 
