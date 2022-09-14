@@ -85,7 +85,7 @@ So *binding* in this case is implicit.
 A *fanout exchange* allows us to broadcast messages to multiple consumers.
 
 In this case *bindings* determine multiple queues where the messages should be
-delivered. A copy of each message is sent to all bound destination.
+delivered. A copy of each message is sent to each bound destination.
 
 *Routing keys* are ignored for fanouts.
 
@@ -422,7 +422,7 @@ done
 rabbitmqadmin publish routing_key='' payload='Hi everyone!' exchange='notify-all'
 ----
 
-Then `"Hi everyone!"` will be received by the three subscriptions
+then `"Hi everyone!"` will be received by the three subscriptions
 `/queue/red`, `/queue/green`, `/queue/blue`, since the message was sent
 to the fanout exchange `notify-all`.
 
@@ -439,5 +439,5 @@ image:demo-fanout.png[]
 link:https://www.rabbitmq.com/web-stomp.html[Web STOMP] plugins
 for RabbitMQ
 - link:https://github.com/stomp-js/stompjs[STOMP.js] library for JavaScript
-- Gavin Roy, RabbitMQ in Depth, Manning Publications, 2018.
+- Gavin Roy, RabbitMQ in Depth, Manning Publications, 2018
 
