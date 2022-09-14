@@ -145,10 +145,11 @@ We need to enable `rabbitmq_web_stomp` plugin for our Docker image:
 
 [source,dockerfile]
 ----
-include::rabbitmq-stomp/Dockerfile/[]
+FROM rabbitmq:3.8-management
+RUN rabbitmq-plugins enable --offline rabbitmq_management rabbitmq_web_stomp
 ----
 
-Build and run this custom image:
+Build and run a custom image:
 
 [source,shell]
 ----
@@ -283,7 +284,34 @@ This code works the same way in browser and Node.js:
 
 [source,js]
 ----
-include::vanilla.js[]
+const StompJs = require('@stomp/stompjs')
+
+const topic = '/exchange/notifications/notification.*'
+
+const connectionParams = {
+  brokerURL: 'ws://localhost:15674/ws',
+  connectHeaders: {
+    login: 'guest',
+    passcode: 'guest'
+  },
+  reconnectDelay: 5000,
+  heartbeatIncoming: 4000,
+  heartbeatOutgoing: 4000
+}
+
+const connectionCallBack = (stompMessage) => {
+  console.log(`Got message from ${stompMessage.headers.destination}`)
+  console.log(`> ${stompMessage.body}\n`)
+}
+
+const client = new StompJs.Client(connectionParams)
+
+client.onConnect = (frame) => {
+  console.debug('Connected to WebSocket')
+  client.subscribe(topic, connectionCallBack)
+}
+
+client.activate()
 ----
 
 Run `npm install` & `npm start` from link:vanilla-consumer/[`vanilla-consumer/`]
