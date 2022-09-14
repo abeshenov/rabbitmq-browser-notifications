@@ -375,9 +375,12 @@ Got message from /exchange/notifications/notification.blue
 
 == React.js demo
 
-If we run `npm install` & `npm start` from link:web-consumer/[`web-consumer/`]
-and go to http://localhost:3000/, our application should subscribe to the
-following four STOMP destinations:
+Now we run `npm install` & `npm start` from link:web-consumer/[`web-consumer/`]
+and go to http://localhost:3000/
+
+=== Topic example
+
+Our web application should subscribe to the following four STOMP destinations:
 
 - `/exchange/notifications/notification.red`
 - `/exchange/notifications/notification.green`
@@ -403,6 +406,10 @@ and subscription to `notification.*` gets all of them.
 
 image:demo-topic.png[]
 
+image:topic-exchange.png[]
+
+=== Fanout example
+
 Now if we open the fanout demo and execute
 
 [source,shell]
@@ -420,6 +427,7 @@ Then `"Hi everyone!"` will be received by the three subscriptions
 to the fanout exchange `notify-all`.
 
 image:demo-fanout.png[]
+
 
 == References
 
