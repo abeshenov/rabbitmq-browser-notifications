@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Client } from '@stomp/stompjs'
 
-interface NotificationPannelProps {
+interface NotificationPanelProps {
   className: string
   topic: string
 }
 
-const NotificationPannel: (props: NotificationPannelProps) => JSX.Element =
+const NotificationPanel: (props: NotificationPanelProps) => JSX.Element =
 ({ className, topic }) => (
   <div className={`notifier ${className}`}>
     <h2>{topic}</h2>
@@ -69,4 +69,4 @@ const registerNewClient: (topic: string, notificationConsumer: NotificationConsu
     return newClient
   }
 
-export default NotificationPannel
+export default NotificationPanel

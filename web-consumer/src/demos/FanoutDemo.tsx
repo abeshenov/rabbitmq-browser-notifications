@@ -1,11 +1,11 @@
-import { NotificationPannel } from '../components'
+import { NotificationPanel } from '../components'
 
 const FanoutDemo: () => JSX.Element =
 () => (
   <>
-    <NotificationPannel className='red' topic='/queue/red' />
-    <NotificationPannel className='green' topic='/queue/green' />
-    <NotificationPannel className='blue' topic='/queue/blue' />
+    <NotificationPanel className='red' topic='/queue/red' />
+    <NotificationPanel className='green' topic='/queue/green' />
+    <NotificationPanel className='blue' topic='/queue/blue' />
   </>
 )
 

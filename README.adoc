@@ -155,7 +155,7 @@ Build and run a custom image:
 ----
 cd rabbitmq-stomp
 sudo docker build -t rabbit-stomp .
-sudo docker run -p 5672:5672 -p 15672:15672 -p 15674:15674 --name rabbit_demo rabbit-stomp
+sudo docker run -p 5672:5672 -p 15672:15672 -p 15674:15674 --name rabbit_demo -d rabbit-stomp
 ----
 
 The ports are

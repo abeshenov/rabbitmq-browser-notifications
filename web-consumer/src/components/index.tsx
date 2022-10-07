@@ -1,3 +1,3 @@
-import NotificationPannel from './NotificationPannel'
+import NotificationPanel from './NotificationPanel'
 
-export { NotificationPannel }
+export { NotificationPanel }
